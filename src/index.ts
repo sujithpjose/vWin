@@ -19,6 +19,6 @@ app.get('/', (req: Request, res: Response) => {
 createServer(app)
     .listen(
         port,
-        () => console.info(`Server running on port ${port}`)
+        () => console.info(`Server running on port ${port}:`)
     );
 
