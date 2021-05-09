@@ -22,7 +22,7 @@ export class RequestService {
     }
 
     private handleError(err?: Error): ResponseError {
-        console.log('In [handleError] ', err);
+        // console.log('In [handleError] ', err);
         const error = new ResponseError(0, 'remote server error');
         throw new CustomErrorHandler(error, 404);
     }
