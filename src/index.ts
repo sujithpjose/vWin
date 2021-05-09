@@ -13,7 +13,7 @@ scheduler.start();
 
 app.use(errorMiddleware);
 app.get('/', (req: Request, res: Response) => {
-    res.send("Welcome to We Win Together");
+    res.send("Welcome to We Win Together!");
 });
 
 createServer(app)
