@@ -1,0 +1,20 @@
+import { APP_CONSTANTS } from './../constants/app.constants';
+import TelegramBot from 'node-telegram-bot-api';
+
+export class TelegramBotService {
+
+    private token: string;
+    private chatId: string;
+    private bot: TelegramBot;
+
+    constructor() {
+        this.token = APP_CONSTANTS.TELEGRAM_TOKEN;
+        this.chatId = APP_CONSTANTS.TELEGRAM_GROUP_ID;
+        this.bot = new TelegramBot(this.token, { polling: true });
+    }
+
+    sendMessage(msg = "Testing  message: 10") {
+        this.bot.sendMessage(this.chatId, msg);
+    }
+
+}
