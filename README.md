@@ -1,3 +1,3 @@
-# m2c2
+# VWIN
 Movie review application
 
