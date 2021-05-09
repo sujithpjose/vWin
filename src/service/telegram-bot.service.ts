@@ -13,8 +13,8 @@ export class TelegramBotService {
         this.bot = new TelegramBot(this.token, { polling: true });
     }
 
-    sendMessage(msg = "Testing  message: 10") {
-        this.bot.sendMessage(this.chatId, msg);
+    sendMessage(msg: string) {
+        this.bot.sendMessage(this.chatId, msg, { parse_mode: 'HTML' });
     }
 
 }

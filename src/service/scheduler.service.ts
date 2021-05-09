@@ -13,10 +13,6 @@ export class Scheduler {
     }
 
     start() {
-        this.cowinRequest.fetchByDistrict().then(res => {
-            console.log(res);
-        });
-
         const task = new AsyncTask(
             'cowin task',
             () => {
