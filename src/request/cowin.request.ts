@@ -10,9 +10,19 @@ export class CowinRequest {
         this.requestService = new RequestService();
     }
 
-    public fetchByDistrict(districtId = 303, date = "09-05-2021"): Promise<CenterResponse> {
+    public fetchByDistrict(districtId = 303): Promise<CenterResponse> {
+        const date = this.currentDateAsString();
         const url = `${baseUrl}/appointment/sessions/public/calendarByDistrict?district_id=${districtId}&date=${date}`;
 
         return this.requestService.get(url);
+    }
+
+    private currentDateAsString(): string {
+        const dateObj = new Date();
+        const month = dateObj.getMonth() + 1;
+        const day = String(dateObj.getDate()).padStart(2, '0');
+        const year = dateObj.getFullYear();
+
+        return `${day}-${month}-${year}`;
     }
 }

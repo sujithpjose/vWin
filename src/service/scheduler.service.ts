@@ -18,14 +18,12 @@ export class Scheduler {
             () => {
                 return this.cowinRequest.fetchByDistrict().then((result) => {
                     this.helperService.processResponse(result);
-                    /* continue the promise chain */
                 })
             },
             (err: Error) => {
-                /* handle error here */
             }
         )
-        const job = new SimpleIntervalJob({ seconds: 30, }, task)
+        const job = new SimpleIntervalJob({ minutes: 4 }, task)
 
         this.scheduler.addSimpleIntervalJob(job)
     }

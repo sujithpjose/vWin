@@ -3,16 +3,25 @@ import { TelegramBotService } from "./telegram-bot.service";
 
 export class HelperService {
     private telegramBotService: TelegramBotService;
+    private totalSlots: number;
 
     constructor() {
         this.telegramBotService = new TelegramBotService();
+        this.totalSlots = 0;
     }
 
     processResponse(response: CenterResponse) {
         if (response.centers.length > 0) {
-            const msg = "Vaccination center is available for booking. Please visit COWIN portal.";
-            const htmlString = this.generateTable(response.centers);
-            this.telegramBotService.sendMessage(htmlString);
+            const availableSlots = this.parseResponse(response.centers);
+            console.log('availableSlots:', availableSlots);
+            if (availableSlots !== this.totalSlots && availableSlots > 0) {
+                const htmlString = this.generateTextMessage(availableSlots);
+                this.totalSlots = availableSlots;
+                this.telegramBotService.sendMessage(htmlString);
+            } else {
+                // consider as no change
+            }
+
         } else {
             console.log(Date.now, "No Vaccination center is available for booking.");
             // return "No Vaccination center is available for booking.";
@@ -20,25 +29,23 @@ export class HelperService {
         }
     }
 
-    generateTable(data: Center[]) {
-        let messageString: string = '';
-
+    private parseResponse(data: Center[]): number {
+        let totalSlots = 0;
         data.forEach(center => {
-            messageString += `
-            <b>${center.name} (${center.fee_type})</b> 
-            ${center.address}
-          `;
-
             center.sessions.forEach(session => {
-                messageString += `
-            <b>${session.date}</b>
-            Available : ${session.available_capacity}  Age ${session.min_age_limit}+
-            <em>${session.vaccine}</em>
-            `
+                if (session.available_capacity > 0) {
+                    totalSlots += session.available_capacity;
+                }
+
             });
         });
+        return totalSlots;
+    }
 
-        return messageString;
-
+    generateTextMessage(slots: number) {
+        const msg = `<b>${slots} slots</b> available for booking now. Please visit <b>COWIN</b> portal.
+        <i>https://selfregistration.cowin.gov.in/</i>
+        `;
+        return msg;
     }
 }

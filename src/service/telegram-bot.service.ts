@@ -10,7 +10,7 @@ export class TelegramBotService {
     constructor() {
         this.token = APP_CONSTANTS.TELEGRAM_TOKEN;
         this.chatId = APP_CONSTANTS.TELEGRAM_GROUP_ID;
-        this.bot = new TelegramBot(this.token, { polling: true });
+        this.bot = new TelegramBot(this.token, { polling: false });
     }
 
     sendMessage(msg: string) {
