@@ -10,7 +10,7 @@ export class CowinRequest {
         this.requestService = new RequestService();
     }
 
-    public fetchByDistrict(districtId = 555, date = "09-05-2021"): Promise<CenterResponse> {
+    public fetchByDistrict(districtId = 303, date = "09-05-2021"): Promise<CenterResponse> {
         const url = `${baseUrl}/appointment/sessions/public/calendarByDistrict?district_id=${districtId}&date=${date}`;
 
         return this.requestService.get(url);

@@ -14,8 +14,9 @@ export class HelperService {
             const htmlString = this.generateTable(response.centers);
             this.telegramBotService.sendMessage(htmlString);
         } else {
-            console.log(Date.now, "No Vaccination center is available for booking.")
-            return "No Vaccination center is available for booking.";
+            console.log(Date.now, "No Vaccination center is available for booking.");
+            // return "No Vaccination center is available for booking.";
+            this.telegramBotService.sendMessage("<b>No Vaccination center is available for booking.</b>");
         }
     }
 
