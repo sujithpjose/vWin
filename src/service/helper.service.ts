@@ -53,7 +53,10 @@ export class HelperService {
     }
 
     generateTextMessage(slots: TotalSlots) {
-        const msg = `<b> Age 45+ : ${slots.a45} :: Age 18+ : ${slots.u45}</b> slots available for booking now. Please visit <b>COWIN</b> portal.
+        const msg = `
+        <i> Age 45+ : </i>  <b> ${slots.a45} slots </b> &
+        <i>Age 18+ : </i>  <b> ${slots.u45} slots </b>  
+        available for booking now. Please visit <b>COWIN</b> portal.
         <i>https://selfregistration.cowin.gov.in/</i>
         `;
         return msg;
