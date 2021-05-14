@@ -1,3 +1,4 @@
+require('newrelic');
 import express, { Express, Request, Response } from "express";
 import { createServer } from 'http';
 
