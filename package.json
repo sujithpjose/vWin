@@ -41,7 +41,6 @@
     "class-validator": "^0.12.2",
     "express": "^4.17.1",
     "http": "0.0.1-security",
-    "newrelic": "^7.4.0",
     "node-telegram-bot-api": "^0.53.0",
     "rimraf": "^3.0.2",
     "toad-scheduler": "^1.0.2",

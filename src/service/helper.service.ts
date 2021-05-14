@@ -14,18 +14,21 @@ export class HelperService {
         if (response.centers.length > 0) {
             const availableSlots = this.parseResponse(response.centers);
             console.log('availableSlots:', availableSlots);
-            if (availableSlots !== this.totalSlots && availableSlots > 0) {
+            const htmlString = this.generateTextMessage(availableSlots);
+            this.totalSlots = availableSlots;
+            this.telegramBotService.sendMessage(htmlString);
+            /* if (availableSlots !== this.totalSlots && availableSlots > 0) {
                 const htmlString = this.generateTextMessage(availableSlots);
                 this.totalSlots = availableSlots;
                 this.telegramBotService.sendMessage(htmlString);
             } else {
                 // consider as no change
-            }
+            } */
 
         } else {
-            console.log(Date.now, "No Vaccination center is available for booking.");
+            console.log(Date.now, "No Vaccination center is available for booking now.");
             // return "No Vaccination center is available for booking.";
-            this.telegramBotService.sendMessage("<b>No Vaccination center is available for booking.</b>");
+            this.telegramBotService.sendMessage("<b>No Vaccination center is available for booking now!.</b>");
         }
     }
 
