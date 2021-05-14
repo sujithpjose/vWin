@@ -23,7 +23,7 @@ export class Scheduler {
             (err: Error) => {
             }
         )
-        const job = new SimpleIntervalJob({ seconds: 10 }, task)
+        const job = new SimpleIntervalJob({ seconds: 30 }, task)
 
         this.scheduler.addSimpleIntervalJob(job)
     }
