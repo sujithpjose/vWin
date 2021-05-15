@@ -16,9 +16,11 @@ export class HelperService {
     processResponse(response: CenterResponse) {
         if (response.centers.length > 0) {
             const availableSlots: TotalSlots = this.parseResponse(response.centers);
+            Math.round(availableSlots.a45);
+            Math.round(availableSlots.u45);
             console.log('Total availableSlots:', availableSlots);
 
-            if (availableSlots.a45 !== this.totalSlots.a45 || availableSlots.u45 !== this.totalSlots.u45) {
+            if (availableSlots.a45 > this.totalSlots.a45 || availableSlots.u45 > this.totalSlots.u45) {
                 const htmlString = this.generateTextMessage(availableSlots);
                 this.totalSlots = { ...availableSlots };
                 this.telegramBotService.sendMessage(htmlString);
