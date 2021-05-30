@@ -22,13 +22,12 @@ export class HelperService {
 
             if (availableSlots.a45 > this.totalSlots.a45 || availableSlots.u45 > this.totalSlots.u45) {
                 const htmlString = this.generateTextMessage(availableSlots);
-                this.totalSlots = { ...availableSlots };
                 this.telegramBotService.sendMessage(htmlString);
             } else {
                 console.log(Date.now, "consider as no change.");
                 // consider as no change
             }
-
+            this.totalSlots = { ...availableSlots };
         } else {
             console.log(Date.now, "No Vaccination center is available for booking now.");
             // return "No Vaccination center is available for booking.";

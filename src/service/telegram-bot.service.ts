@@ -9,7 +9,7 @@ export class TelegramBotService {
 
     constructor() {
         this.token = APP_CONSTANTS.TELEGRAM_TOKEN;
-        this.chatId = APP_CONSTANTS.TELEGRAM_GROUP_ID;
+        this.chatId = APP_CONSTANTS.TELEGRAM_CHANNEL_ID;
         this.bot = new TelegramBot(this.token, { polling: false });
     }
 
